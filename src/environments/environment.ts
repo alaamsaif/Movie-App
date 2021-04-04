@@ -4,6 +4,8 @@
 
 export const environment = {
   production: false,
+  apiBase: 'https://api.themoviedb.org/3',
+  apiKey: '?api_key=1a5602c2cce1df66d9735323fe31b85d',
   firebase : {
     apiKey: "AIzaSyDL9bwG8BghlGZCbLcNaJS1YQ_4OP-LPUY",
     authDomain: "movieapp-92c95.firebaseapp.com",
