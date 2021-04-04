@@ -35,9 +35,10 @@ export class AuthenticationService {
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
         this.ngZone.run(() => {
-          console.log("signIn")
+          console.log("login")
+          this.toastr.success('Hello world!', 'Toastr fun!');
+
         });
-        //this.SetUserData(result.user);
       }).catch((error) => {
         this.toastr.error(`${error.message}`, 'Error', {
           closeButton: true,
@@ -64,7 +65,7 @@ export class AuthenticationService {
       uid: forID.uid,
       email: user.email,
       password: user.password,
-      userName: user.userName,
+      username: user.username,
     }
     return userRef.set(userState, {
       merge: true

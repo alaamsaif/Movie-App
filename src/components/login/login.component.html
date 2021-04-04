@@ -1,0 +1,27 @@
+<div class="container">
+    <form #loginForm="ngForm">
+        <h1>login</h1>
+
+        <!--email-->
+        <div class="form-group">
+            <label for="exampleInputEmail1">Enter email</label>
+            <input name="email" [(ngModel)]="email" type="email" class="form-control" id="exampleInputEmail1"
+                #useremail="ngModel" email="true" required>
+        </div>
+
+        <!--password-->
+        <div class="mb-3 from-group">
+            <label id="regPasswordLabel" for="passwordRegTxt"
+                class="form-label text-left justify-content-left d-flex">Enter password</label>
+            <input #newPassword="ngModel" [(ngModel)]="password" name="password" type="password" class="form-control"
+                id="passwordRegTxt" placeholder="* * * * * * * *" required />
+        </div>
+
+        <!--submit button-->
+        <button type="button" class="btn btn-primary" (click)="login()"
+            [disabled]="loginForm.invalid">login</button>
+
+
+    </form>
+
+</div>
