@@ -8,9 +8,9 @@
             <input #newUsername="ngModel" [(ngModel)]="username" name="username" type="username" class="form-control"
                 id="usernameRegTxt" required minlength="5" />
             <div *ngIf="newUsername.invalid && (newUsername.dirty || newUsername.touched)" class="alert alert-danger">
-                <div *ngIf="newUsername.errors.minlength">
+                <!-- <div *ngIf="newUsername.errors.minlength">
                     username must be at least 5 characters long.
-                </div>
+                </div> -->
             </div>
         </div>
 
@@ -37,9 +37,9 @@
                 id="passwordRegTxt" placeholder="* * * * * * * *" required minlength="10" />
             <div *ngIf="newPassword.invalid && (newPassword.dirty || newPassword.touched)" class="alert alert-danger">
 
-                <div *ngIf="newPassword.errors.minlength">
+                <!-- <div *ngIf="newPassword.errors.minlength">
                     password must be at least 10 characters long.
-                </div>
+                </div> -->
             </div>
         </div>
 

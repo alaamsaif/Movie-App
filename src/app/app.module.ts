@@ -10,17 +10,28 @@ import { CreatAccountComponent } from 'src/components/creat-account/creat-accoun
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { HomeComponent } from 'src/components/home/home.component';
+import { HttpClientModule } from '@angular/common/http';
+import { TopRatedMoviesComponent } from 'src/components/topRatedMovies/topRatedMovies.component';
+import { UpcomingMoviesComponent } from 'src/components/upcomingMovies/upcomingMovies.component';
+import { NowPlayingMoviesComponent } from 'src/components/nowPlayingMovies/nowPlayingMovies.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    CreatAccountComponent
+    CreatAccountComponent,
+    HomeComponent,
+    TopRatedMoviesComponent,
+    UpcomingMoviesComponent,
+    NowPlayingMoviesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
+
 
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
