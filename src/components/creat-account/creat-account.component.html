@@ -1,6 +1,7 @@
-<div class="container">
+<app-header></app-header>
+<div class="container main-div">
     <form #craetAccountForm="ngForm">
-        <h1>Creat Account</h1>
+        <h2>Sign up for an account</h2>
         <!--password-->
         <div class="mb-3 from-group">
             <label id="regUsernameLabel" for="usernameRegTxt"
@@ -45,7 +46,7 @@
 
         <!--submit button-->
         <button type="button" class="btn btn-primary" (click)="addUser()"
-            [disabled]="craetAccountForm.invalid">Submit</button>
+            [disabled]="craetAccountForm.invalid">Sign Up</button>
 
 
     </form>

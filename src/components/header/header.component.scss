@@ -1,0 +1,29 @@
+.title{
+    font-family: 'Paytone One', sans-serif;
+    text-transform: uppercase;
+    color: white;
+}
+#menubtn{
+    color: white;
+    font-size: 25px;
+}
+nav{
+    background-color: rgb(26, 33, 39);
+}
+a{
+    cursor: pointer;
+    text-decoration: none;
+}
+
+   
+ul li a{
+    color: white;  
+    font-weight: bold;
+}
+.notActivated{
+    color: white;
+}
+.activated{
+    color: rgb(35,130,178) !important;
+   
+}

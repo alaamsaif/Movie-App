@@ -17,6 +17,7 @@ import { UpcomingMoviesComponent } from 'src/components/upcomingMovies/upcomingM
 import { NowPlayingMoviesComponent } from 'src/components/nowPlayingMovies/nowPlayingMovies.component';
 import { MovieDeatailsComponent } from 'src/components/movieDeatails/movieDeatails.component';
 import { NotFoundComponent } from 'src/components/notFound/notFound.component';
+import { HeaderComponent } from 'src/components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { NotFoundComponent } from 'src/components/notFound/notFound.component';
     UpcomingMoviesComponent,
     NowPlayingMoviesComponent,
     MovieDeatailsComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
