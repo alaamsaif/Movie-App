@@ -8,6 +8,7 @@ import { NotFoundComponent } from 'src/components/notFound/notFound.component';
 import { NowPlayingMoviesComponent } from 'src/components/nowPlayingMovies/nowPlayingMovies.component';
 import { TopRatedMoviesComponent } from 'src/components/topRatedMovies/topRatedMovies.component';
 import { UpcomingMoviesComponent } from 'src/components/upcomingMovies/upcomingMovies.component';
+import { UserPageComponent } from 'src/components/userPage/userPage.component';
 
 const routes: Routes = [
   {path :'Home',component:HomeComponent},
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path :'topmovies',component:TopRatedMoviesComponent},
   {path:'upcomingmovies',component:UpcomingMoviesComponent},
   {path:'nowplayingmovies',component:NowPlayingMoviesComponent},
+  {path:'userpage',component:UserPageComponent},
   {path:"",redirectTo:'topmovies',pathMatch:'full'},
   {path:"**", component:NotFoundComponent}
   

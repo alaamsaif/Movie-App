@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from 'src/models/User';
+import { AuthenticationService } from 'src/services/authentication.service';
+import { UserService } from 'src/services/firebaseServices/user/user.service';
 
 @Component({
   selector: 'app-header',
@@ -7,10 +10,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor(private router :Router) { }
+  isLoggedIn :boolean =false;
+  userId:string|any;
+  user:User|any;
+  constructor(
+    private router :Router,
+    private auth : AuthenticationService,
+    private userser:UserService
+    ) { }
 
   ngOnInit() {
+    this.isLoggedIn = this.auth.isLoggedIn
+    this.userId=this.auth.userLoggedID
+    this.userser.getUserById(this.userId).subscribe((user)=>{
+      this.user={ id: user.payload.id, ...(user.payload.data() as {}) };
+      console.log("OPA")
+      console.log(this.user)
+    })
+   
   }
 
   login(){

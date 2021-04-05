@@ -1,0 +1,25 @@
+<div class="container-fluid p-3">
+  <h4>My Favorites</h4>
+  <p *ngIf="favoritesListIds?.length==0">You haven't added any favorite movies.</p>
+  <div *ngIf="favoritesListIds?.length > 0">
+    <div *ngFor="let item of favoritesListMovies" class="row shadow p-3 mb-5 bg-white rounded movieCard">
+      <div class="col-lg-2 col-md-2 col-sm-12">
+        <a (click)="showMovieDetails(item)"><img class="w-100 rounded"
+            src="https://image.tmdb.org/t/p/original/{{item.poster_path}}"></a>
+      </div>
+      <div class="col-lg-10 col-md-10  col-sm-12">
+        <h6 class="title">{{item?.title}}</h6>
+        <p>{{item?.overview}}</p>
+        <div>
+          <button type="button" class="rounded-circle btn btn-primary" data-toggle="tooltip" data-placement="bottom"
+              title="Mark as favorite">
+              <i class="fas fa-times"></i>
+             
+        </button>
+        <span class="mx-2">Remove</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -3,4 +3,10 @@ export interface User {
   email: string;
   password: string;
   username: string;
+  favorites?:[];
+  likes?:[];
+  comments?:{
+    content:string;
+    movieId:number
+  }[]
 }

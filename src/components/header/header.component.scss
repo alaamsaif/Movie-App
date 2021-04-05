@@ -13,9 +13,7 @@ nav{
 a{
     cursor: pointer;
     text-decoration: none;
-}
-
-   
+}  
 ul li a{
     color: white;  
     font-weight: bold;
@@ -26,4 +24,8 @@ ul li a{
 .activated{
     color: rgb(35,130,178) !important;
    
+}
+.dropdownMenuForUser a{
+    color: black !important;
+    font-size: 15px;
 }

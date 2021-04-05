@@ -21,16 +21,13 @@ export class AuthenticationService {
         this.userState = user;
         localStorage.setItem('user', JSON.stringify(this.userState));
         const userJson = localStorage.getItem('user');
-        if(userJson != null){
+        if (userJson != null) {
           JSON.parse(userJson)
         }
-        console.log("ana gwa")
-
       } else {
-        console.log("ana gwa")
         localStorage.removeItem('user')
         console.log(localStorage.getItem('user'));
-        
+
       }
     })
   }
@@ -70,6 +67,9 @@ export class AuthenticationService {
       email: user.email,
       password: user.password,
       username: user.username,
+      favorites:[],
+      likes:[],
+      comments:[]
     }
     return userRef.set(userState, {
       merge: true
@@ -79,30 +79,20 @@ export class AuthenticationService {
   SignOut() {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
-  })
-  }  
-
-  get isLoggedIn(): boolean {
-    if(localStorage.getItem('user')==null)
-      { console.log("bra")
-        return false}
-    else
-      {
-        console.log("gwa")
-        return true
-      }
-    // const user = JSON.parse(localStorage.getItem('user'));
-    // return (user !== null) ? true : false;
+    })
   }
+  get isLoggedIn(): boolean {
+    if (localStorage.getItem('user') == null) {
+      return false
+    }
+    else {
+      return true
+    }
 
-  // get userLoggedID(): string{
-  //   const user = JSON.parse(localStorage.getItem('user'));
-  //   return user.uid;
-  // }
-
-  // getUser(){
-  //   const user = JSON.parse(localStorage.getItem('user'));
-  //   return user.uid;
-  // }
+  }
+  get userLoggedID(): any {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    return user.uid;
+  }
 
 }

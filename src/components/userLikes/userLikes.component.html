@@ -1,0 +1,13 @@
+<div class="container-fluid p-3">
+  <h4 >My likes</h4>
+  <p *ngIf="likesListIds?.length==0">You haven't Like any movies.</p>
+  <div *ngIf="likesListIds?.length > 0" class="row">
+    <div *ngFor="let item of likesListMovies" class="col-lg-2 col-md-3 col-sm-12 rounded movieCard">
+
+      <a (click)="showMovieDetails(item)"><img class="w-100 rounded"
+          src="https://image.tmdb.org/t/p/original/{{item.poster_path}}"></a>
+      <h6 class="title">{{item?.title}}</h6>
+
+    </div>
+  </div>
+</div>

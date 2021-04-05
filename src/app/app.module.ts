@@ -18,6 +18,9 @@ import { NowPlayingMoviesComponent } from 'src/components/nowPlayingMovies/nowPl
 import { MovieDeatailsComponent } from 'src/components/movieDeatails/movieDeatails.component';
 import { NotFoundComponent } from 'src/components/notFound/notFound.component';
 import { HeaderComponent } from 'src/components/header/header.component';
+import { UserPageComponent } from 'src/components/userPage/userPage.component';
+import { UserFavoritesComponent } from 'src/components/userFavorites/userFavorites.component';
+import { UserLikesComponent } from 'src/components/userLikes/userLikes.component';
 
 @NgModule({
   declarations: [
@@ -30,15 +33,16 @@ import { HeaderComponent } from 'src/components/header/header.component';
     NowPlayingMoviesComponent,
     MovieDeatailsComponent,
     NotFoundComponent,
-    HeaderComponent
+    HeaderComponent,
+    UserPageComponent,
+    UserFavoritesComponent,
+    UserLikesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-
-
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
 

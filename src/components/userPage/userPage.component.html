@@ -1,0 +1,35 @@
+<app-header></app-header>
+<div class="main-div">
+  <!--Cover contain user name-->
+  <div class="jumbotron jumbotron-fluid mb-0 d-none d-xl-block d-lg-block d-md-block ">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-2 col-md-3 col-sm-6 ">
+          <div class="rounded-circle circleContainer">
+            <h1>{{user?.username[0]|uppercase}}</h1>
+          </div>
+
+        </div>
+        <div class="col-lg-10 col-md-9 col-sm-6 usernameContainer">
+          <h1>{{user?.username}}</h1>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--navbar menu -->
+  <div id="myGroup" class="container-fluid mt-0">
+    <div class="row g-0 border-bottom btn-menu-group">
+      <button (click)="showFavoritesSection()">
+        favoraties
+      </button>
+      <button (click)="showLikesSection()">
+        likes
+      </button>
+
+    </div>
+  </div>
+  <app-userFavorites *ngIf="showFav"></app-userFavorites>
+  <app-userLikes *ngIf="showLikes"></app-userLikes>
+</div>
