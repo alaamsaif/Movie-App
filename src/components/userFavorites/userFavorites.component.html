@@ -11,7 +11,7 @@
         <h6 class="title">{{item?.title}}</h6>
         <p>{{item?.overview}}</p>
         <div>
-          <button type="button" class="rounded-circle btn btn-primary" data-toggle="tooltip" data-placement="bottom"
+          <button (click)='removefromfavorites(item.id)' type="button" class="rounded-circle btn btn-primary" data-toggle="tooltip" data-placement="bottom"
               title="Mark as favorite">
               <i class="fas fa-times"></i>
              

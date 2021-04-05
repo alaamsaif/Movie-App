@@ -24,17 +24,20 @@ export class HeaderComponent implements OnInit {
     this.userId=this.auth.userLoggedID
     this.userser.getUserById(this.userId).subscribe((user)=>{
       this.user={ id: user.payload.id, ...(user.payload.data() as {}) };
-      console.log("OPA")
-      console.log(this.user)
     })
    
   }
-
   login(){
     this.router.navigate(['/Login']);
   }
   signup(){
     this.router.navigate(['/Register']);
+  }
+  logout(){
+    this.auth.SignOut().then((data)=>{
+      this.ngOnInit();
+    })
+    this.router.navigate(['/topmovies']);
   }
 
 }

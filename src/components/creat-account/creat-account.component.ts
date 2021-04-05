@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from 'src/models/User';
 import { AuthenticationService } from 'src/services/authentication.service';
 
@@ -15,11 +16,12 @@ export class CreatAccountComponent implements OnInit {
     password:'',
     email:'',
     username:''
-
-    
   };
 
-  constructor(private auth:AuthenticationService) { }
+  constructor(
+    private auth:AuthenticationService,
+    private router :Router
+    ) { }
   ngOnInit(): void {
   }
   addUser(){
@@ -29,7 +31,7 @@ export class CreatAccountComponent implements OnInit {
       username: this.username,
     }
     this.auth.SignUp(this.user);
-    console.log(this.user)
+    this.router.navigate(['/userpage']);
     
   }
 
