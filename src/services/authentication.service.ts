@@ -24,9 +24,13 @@ export class AuthenticationService {
         if(userJson != null){
           JSON.parse(userJson)
         }
+        console.log("ana gwa")
+
       } else {
-        // localStorage.setItem('user', null);
-        // JSON.parse(localStorage.getItem('user'));
+        console.log("ana gwa")
+        localStorage.removeItem('user')
+        console.log(localStorage.getItem('user'));
+        
       }
     })
   }
@@ -77,5 +81,28 @@ export class AuthenticationService {
       localStorage.removeItem('user');
   })
   }  
+
+  get isLoggedIn(): boolean {
+    if(localStorage.getItem('user')==null)
+      { console.log("bra")
+        return false}
+    else
+      {
+        console.log("gwa")
+        return true
+      }
+    // const user = JSON.parse(localStorage.getItem('user'));
+    // return (user !== null) ? true : false;
+  }
+
+  // get userLoggedID(): string{
+  //   const user = JSON.parse(localStorage.getItem('user'));
+  //   return user.uid;
+  // }
+
+  // getUser(){
+  //   const user = JSON.parse(localStorage.getItem('user'));
+  //   return user.uid;
+  // }
 
 }

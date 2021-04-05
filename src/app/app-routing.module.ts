@@ -17,7 +17,7 @@ const routes: Routes = [
   {path :'topmovies',component:TopRatedMoviesComponent},
   {path:'upcomingmovies',component:UpcomingMoviesComponent},
   {path:'nowplayingmovies',component:NowPlayingMoviesComponent},
-  {path:"",redirectTo:'Home',pathMatch:'full'},
+  {path:"",redirectTo:'topmovies',pathMatch:'full'},
   {path:"**", component:NotFoundComponent}
   
 ];

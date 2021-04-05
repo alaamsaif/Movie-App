@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Movie } from 'src/models/Movie';
 import { ApiService } from 'src/services/api.service';
+import { AuthenticationService } from 'src/services/authentication.service';
 
 @Component({
   selector: 'app-topRatedMovies',
@@ -20,7 +21,7 @@ export class TopRatedMoviesComponent implements OnInit {
   ngOnInit() {
     this.apiService.getTopRated(this.page).subscribe((movies) => {
       this.listOfMovies = movies.results;
-      console.log(this.listOfMovies)
+      
     })
   }
   getMoreTopRated(){
@@ -30,14 +31,13 @@ export class TopRatedMoviesComponent implements OnInit {
       {
         this.listOfMovies = this.listOfMovies.concat(Data.results);
       }
-      console.log(this.listOfMovies)
+      
     })
   }
   showMovieDetails(movie:Movie){
-    console.log(movie.id)
     this.route.navigate(['movie', movie.id]);
 
   }
-
+  
 
 }
