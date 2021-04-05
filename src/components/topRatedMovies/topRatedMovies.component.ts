@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Movie } from 'src/models/Movie';
 import { ApiService } from 'src/services/api.service';
 
@@ -10,7 +11,11 @@ import { ApiService } from 'src/services/api.service';
 export class TopRatedMoviesComponent implements OnInit {
   page:number = 1;
   listOfMovies: Movie[] = [];
-  constructor(private apiService: ApiService) { }
+  constructor(
+    private apiService: ApiService,
+    private route: Router,
+
+    ) { }
 
   ngOnInit() {
     this.apiService.getTopRated(this.page).subscribe((movies) => {
@@ -30,6 +35,7 @@ export class TopRatedMoviesComponent implements OnInit {
   }
   showMovieDetails(movie:Movie){
     console.log(movie.id)
+    this.route.navigate(['movie', movie.id]);
 
   }
 

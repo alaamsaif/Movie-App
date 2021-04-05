@@ -1,6 +1,6 @@
 <div class="main-div">
   <nav class="navbar fixed-top navbar-expand-md px-5">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand">
       <h3>Movies</h3>
     </a>
   </nav>
@@ -45,11 +45,11 @@
   </div>
 
   <!--Recommendtions Movies-->
-  <div class="container my-4" *ngIf="recommendationsList.length>0">
+  <div class="container my-4 RecommendtionsSection" *ngIf="recommendationsList.length>0">
     <h2 class="title">Recommended for you</h2>
     <div class="row">
       <div class="col-lg-2 col-md-2 col-sm-3" *ngFor="let item of recommendationsList">
-        <a><img class="img-fluid rounded" src="https://image.tmdb.org/t/p/original/{{item.poster_path}}"></a>
+        <a (click)="showMovieDetails(item)"><img class="img-fluid rounded" src="https://image.tmdb.org/t/p/original/{{item.poster_path}}"></a>
         <h6 class="title mt-2">{{item.title}}</h6>
       </div>
     </div>
@@ -58,11 +58,11 @@
 
 
   <!--Similar Movies-->
-  <div class="container my-4" *ngIf="similarMoviesList.length>0">
+  <div class="container my-4 SimilarMoviesSection" *ngIf="similarMoviesList.length>0">
     <h2 class="title">You might like </h2>
     <div class="row">
       <div class="col-lg-2 col-md-2 col-sm-3" *ngFor="let item of similarMoviesList">
-        <a><img class="img-fluid rounded" src="https://image.tmdb.org/t/p/original/{{item.poster_path}}"></a>
+        <a (click)="showMovieDetails(item)"><img class="img-fluid rounded" src="https://image.tmdb.org/t/p/original/{{item.poster_path}}"></a>
         <h6 class="title mt-2">{{item.title}}</h6>
 
       </div>
@@ -78,7 +78,7 @@
         <h6 class="mb-0">A review by {{review.author}}
         </h6>
         <small>Written by {{review.author}} - on {{review.created_at}}</small>
-        <p class="my-2">{{review.content}}</p>
+        <p class="my-2" >{{review.content}}</p>
       </div>
 
     </div>

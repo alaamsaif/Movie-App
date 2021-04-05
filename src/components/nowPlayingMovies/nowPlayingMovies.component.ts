@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Movie } from 'src/models/Movie';
 import { ApiService } from 'src/services/api.service';
 
@@ -10,7 +11,10 @@ import { ApiService } from 'src/services/api.service';
 export class NowPlayingMoviesComponent implements OnInit {
   page:number = 1;
   listOfMovies: Movie[] = [];
-  constructor(private apiService: ApiService) { }
+  constructor(
+    private apiService: ApiService,
+    private route:Router
+    ) { }
  
 
   ngOnInit() {
@@ -30,5 +34,8 @@ export class NowPlayingMoviesComponent implements OnInit {
       console.log(this.listOfMovies)
     })
   }
-
+  showMovieDetails(movie:Movie){
+    console.log(movie.id)
+    this.route.navigate(['movie', movie.id]);
+  }
 }

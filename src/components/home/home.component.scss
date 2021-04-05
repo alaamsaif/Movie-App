@@ -3,6 +3,12 @@
  padding-bottom: 10px;
  padding-top: 4.5rem;
 }
+.title{
+    font-family: 'Paytone One', sans-serif;
+    text-transform: uppercase;
+    color: white;
+
+}
 #menubtn{
     color: white;
     font-size: 25px;
@@ -14,10 +20,8 @@ a{
     cursor: pointer;
     text-decoration: none;
 }
-h3{
-    text-transform: uppercase;
-    color: white;
-}
+
+   
 ul li a{
     color: white;  
     font-weight: bold;

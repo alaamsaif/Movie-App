@@ -2,7 +2,7 @@
   <div class="row g-0">
     <div *ngFor="let item of listOfMovies" class="col-lg-3 col-md-3 col-sm-6 col-xs-12 MovieCard my-3">
       <div>
-        <a><img class="img-fluid rounded" src="https://image.tmdb.org/t/p/original/{{item.poster_path}}"></a>
+        <a (click)="showMovieDetails(item)"><img class="img-fluid rounded shadow-sm" src="https://image.tmdb.org/t/p/original/{{item.poster_path}}"></a>
         <p>{{item.title}}</p>
       </div>
     </div>

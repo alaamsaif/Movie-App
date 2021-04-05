@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Movie } from 'src/models/Movie';
 import { ApiService } from 'src/services/api.service';
 
@@ -11,6 +12,7 @@ export class HomeComponent implements OnInit {
   showTopRated:boolean= true;
   showUpcoming:boolean=false;
   showNowPlaying:boolean=false;
+  constructor(private router :Router){}
   ngOnInit() {
   }
   showupcoming(){
@@ -29,6 +31,12 @@ export class HomeComponent implements OnInit {
     this.showTopRated=false;
     this.showNowPlaying=true;
 
+  }
+  login(){
+    this.router.navigate(['/Login']);
+  }
+  signup(){
+    this.router.navigate(['/Register']);
   }
 
 }
