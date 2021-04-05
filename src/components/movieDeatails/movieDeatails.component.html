@@ -1,0 +1,90 @@
+<div class="main-div">
+  <nav class="navbar fixed-top navbar-expand-md px-5">
+    <a class="navbar-brand" href="#">
+      <h3>Movies</h3>
+    </a>
+  </nav>
+  <!--Movie Deatails-->
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-4">
+          <img class="img-fluid rounded" src="https://image.tmdb.org/t/p/original/{{movie?.poster_path}}">
+        </div>
+        <div class="col-lg-9  col-md-9 col-sm-8 d-flex flex-column justify-content-center">
+          <h2 class="title">{{movie?.title}}({{movieYear}})</h2>
+          <div class="infoBox">
+            <span>{{movie?.release_date}}</span>
+            <span class="mx-2"><i class="fas fa-circle"></i></span>
+            <span class="mr-1" *ngFor="let item of movie?.genres">{{item.name}}</span>
+            <span class="mx-2"><i class="fas fa-circle"></i></span>
+            <span>{{hours}}h {{minutes}}m</span>
+          </div>
+          <div class="actionButtonsBox">
+            <button type="button" class="rounded-circle btn btn-primary" data-toggle="tooltip" data-placement="bottom"
+              title="Mark as favorite">
+              <!-- <i class="far fa-heart"></i> -->
+              <i class="fas fa-heart"></i>
+            </button>
+  
+            <button type="button" class="rounded-circle btn btn-primary" data-toggle="tooltip" data-placement="bottom"
+              title="write comment">
+              <i class="fas fa-comment"></i>
+            </button>
+  
+            <button type="button" class="rounded-circle btn btn-primary" data-toggle="tooltip" data-placement="bottom"
+              title="Like this Movie">
+              <i class="fas fa-thumbs-up"></i> </button>
+          </div>
+          <h5 class="title">overview</h5>
+          <p>{{movie?.overview}}</p>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Recommendtions Movies-->
+  <div class="container my-4" *ngIf="recommendationsList.length>0">
+    <h2 class="title">Recommended for you</h2>
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-3" *ngFor="let item of recommendationsList">
+        <a><img class="img-fluid rounded" src="https://image.tmdb.org/t/p/original/{{item.poster_path}}"></a>
+        <h6 class="title mt-2">{{item.title}}</h6>
+      </div>
+    </div>
+    <hr>
+  </div>
+
+
+  <!--Similar Movies-->
+  <div class="container my-4" *ngIf="similarMoviesList.length>0">
+    <h2 class="title">You might like </h2>
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-3" *ngFor="let item of similarMoviesList">
+        <a><img class="img-fluid rounded" src="https://image.tmdb.org/t/p/original/{{item.poster_path}}"></a>
+        <h6 class="title mt-2">{{item.title}}</h6>
+
+      </div>
+    </div>
+    <hr>
+  </div>
+
+  <!--Reviews-->
+  <div class="container my-4" *ngIf="reviewsList.length>0">
+    <h2 class="title">Reviews</h2>
+    <div class="container">
+      <div class="reviewCard shadow-sm p-3 mb-5 bg-white rounded" *ngFor="let review of reviewsList">
+        <h6 class="mb-0">A review by {{review.author}}
+        </h6>
+        <small>Written by {{review.author}} - on {{review.created_at}}</small>
+        <p class="my-2">{{review.content}}</p>
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+</div>

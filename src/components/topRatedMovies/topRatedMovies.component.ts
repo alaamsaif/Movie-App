@@ -28,6 +28,10 @@ export class TopRatedMoviesComponent implements OnInit {
       console.log(this.listOfMovies)
     })
   }
+  showMovieDetails(movie:Movie){
+    console.log(movie.id)
+
+  }
 
 
 }

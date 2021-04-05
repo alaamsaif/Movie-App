@@ -13,4 +13,10 @@ export interface Movie {
     vote_count: number;
     video: boolean;
     vote_average: number;
+    genres:{
+        id:number,
+        name:string
+    };
+    runtime:number;
+    
 }
