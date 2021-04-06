@@ -27,9 +27,9 @@ export class MovieDeatailsComponent implements OnInit {
   favoritesListIds: any;
   likesListIds: any;
   isFav: boolean = false;
-  isLiked:boolean =false;
-  showAllText:boolean=false;
-  showSmallText:boolean=true;
+  isLiked: boolean = false;
+  showAllText: boolean = false;
+  showSmallText: boolean = true;
 
   constructor(
     private auth: AuthenticationService,
@@ -48,25 +48,18 @@ export class MovieDeatailsComponent implements OnInit {
         this.user = { id: user.payload.id, ...(user.payload.data() as {}) };
         this.favoritesListIds = this.user.favorites;
         this.likesListIds = this.user.likes;
-
-
         for (var movie in this.favoritesListIds) {
-          console.log(this.favoritesListIds[movie]+"-"+this.movieId)
           if (this.favoritesListIds[movie] == this.movieId) {
             this.isFav = true;
-            
+
           }
         }
         for (var movie in this.likesListIds) {
-          console.log(this.likesListIds[movie]+"-"+this.movieId)
           if (this.likesListIds[movie] == this.movieId) {
             this.isLiked = true;
-           
+
           }
         }
-
-
-
       })
     }
     this.activatedroute.paramMap.subscribe((params: ParamMap) => {
@@ -96,9 +89,11 @@ export class MovieDeatailsComponent implements OnInit {
     });
 
   }
+  
   addtofav() {
     if (this.auth.isLoggedIn === true) {
-       if(this.isFav === false){
+     
+      if (this.isFav === false) {
         let theMovies = [...this.favoritesListIds];
         theMovies.push(Number(this.movieId));
         this.userser.updatefavoritesList(theMovies, this.userId)
@@ -108,10 +103,27 @@ export class MovieDeatailsComponent implements OnInit {
           progressBar: true
         });
        
-       }
-       else{
-         this.removefromfavorites(this.movieId);
-       }
+        this.isFav = true;
+      }
+      else if (this.isFav === true) {
+
+        let thomovies = [...this.favoritesListIds];
+        const index = thomovies.indexOf(this.movieId);
+        if (index > -1) {
+          thomovies.splice(index, 1);
+        }
+        this.userser.updatefavoritesList(thomovies, this.userId).then((data)=>{
+          console.log(data)
+          this.ngOnInit();
+         
+        });
+        
+        this.toastr.success(`Remove from favorite`, 'Done', {
+          closeButton: true,
+          timeOut: 5000,
+          progressBar: true
+        });
+      }
     }
     else {
       this.toastr.error(`You need to login first.`, 'Error', {
@@ -122,21 +134,7 @@ export class MovieDeatailsComponent implements OnInit {
 
     }
   }
-  removefromfavorites(movieid: any) {
-    let themovies = [...this.favoritesListIds];
-    const index = themovies.indexOf(movieid);
-    if (index > -1) {
-      themovies.splice(index, 1);
-    }
-    this.userser.updatefavoritesList(themovies, this.userId).then((data)=>{
-    });
-    
-    this.toastr.success(`Remove from favorite`, 'Done', {
-      closeButton: true,
-      timeOut: 5000,
-      progressBar: true
-    });
-  }
+  
   addtolikes() {
     if (this.auth.isLoggedIn === true) {
       let theMovies = [...this.likesListIds];
@@ -160,13 +158,13 @@ export class MovieDeatailsComponent implements OnInit {
   showMovieDetails(movie: Movie) {
     this.router.navigate(['movie', movie.id]);
   }
-  showtext(){
-    this.showAllText=true;
-    this.showSmallText=false
+  showtext() {
+    this.showAllText = true;
+    this.showSmallText = false
   }
-  hidetext(){
-    this.showAllText=false;
-    this.showSmallText=true;
+  hidetext() {
+    this.showAllText = false;
+    this.showSmallText = true;
   }
 
 }
