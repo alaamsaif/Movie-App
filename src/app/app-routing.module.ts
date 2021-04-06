@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ChatroomComponent } from 'src/components/chatroom/chatroom.component';
 import { CreatAccountComponent } from 'src/components/creat-account/creat-account.component';
 import { HomeComponent } from 'src/components/home/home.component';
 import { LoginComponent } from 'src/components/login/login.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path:'upcomingmovies',component:UpcomingMoviesComponent},
   {path:'nowplayingmovies',component:NowPlayingMoviesComponent},
   {path:'userpage',component:UserPageComponent},
+  {path:'chat',component:ChatroomComponent},
   {path:"",redirectTo:'topmovies',pathMatch:'full'},
   {path:"**", component:NotFoundComponent}
   

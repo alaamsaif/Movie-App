@@ -21,6 +21,12 @@ import { HeaderComponent } from 'src/components/header/header.component';
 import { UserPageComponent } from 'src/components/userPage/userPage.component';
 import { UserFavoritesComponent } from 'src/components/userFavorites/userFavorites.component';
 import { UserLikesComponent } from 'src/components/userLikes/userLikes.component';
+import { ChatFormComponent } from 'src/components/chat-form/chat-form.component';
+import { ChatroomComponent } from 'src/components/chatroom/chatroom.component';
+import { FeedComponent } from 'src/components/feed/feed.component';
+import { MessageComponent } from 'src/components/message/message.component';
+import { UserItemComponent } from 'src/components/user-item/user-item.component';
+import { UserListComponent } from 'src/components/user-list/user-list.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +42,13 @@ import { UserLikesComponent } from 'src/components/userLikes/userLikes.component
     HeaderComponent,
     UserPageComponent,
     UserFavoritesComponent,
-    UserLikesComponent
+    UserLikesComponent,
+    ChatFormComponent,
+    ChatroomComponent,
+    FeedComponent,
+    MessageComponent,
+    UserItemComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +57,6 @@ import { UserLikesComponent } from 'src/components/userLikes/userLikes.component
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
 
