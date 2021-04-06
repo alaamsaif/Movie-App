@@ -33,7 +33,7 @@ export class CreatAccountComponent implements OnInit {
       username: this.username,
     }
     this.auth.SignUp(this.user).then((data)=>{
-      console.log('signup')
+      console.log('signup succseffuly')
     });
    
     

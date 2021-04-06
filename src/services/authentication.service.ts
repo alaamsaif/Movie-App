@@ -53,6 +53,7 @@ export class AuthenticationService {
   SignUp(user: User) {
     return this.afAuth.createUserWithEmailAndPassword(user.email, user.password)
       .then((result) => {
+        console.log('set user aho')
         this.SetUserData(user, result.user);
         window.location.reload();
       }).catch((error) => {
@@ -74,6 +75,7 @@ export class AuthenticationService {
       likes:[],
       comments:[]
     }
+    console.log(userState)
     return userRef.set(userState, {
       merge: true
     })
@@ -91,7 +93,6 @@ export class AuthenticationService {
     else {
       return true
     }
-
   }
   get userLoggedID(): any {
     const user = JSON.parse(localStorage.getItem('user') || '{}');

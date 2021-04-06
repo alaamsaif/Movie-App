@@ -10,16 +10,18 @@ import { NowPlayingMoviesComponent } from 'src/components/nowPlayingMovies/nowPl
 import { TopRatedMoviesComponent } from 'src/components/topRatedMovies/topRatedMovies.component';
 import { UpcomingMoviesComponent } from 'src/components/upcomingMovies/upcomingMovies.component';
 import { UserPageComponent } from 'src/components/userPage/userPage.component';
+import { AuthGuard } from 'src/gurdes/auth-gurdes/auth.guard';
+import { LoginGuard } from 'src/gurdes/login-guard/login.guard';
 
 const routes: Routes = [
   {path :'Home',component:HomeComponent},
-  {path :'Register',component:CreatAccountComponent},
-  {path :'Login',component:LoginComponent },
+  {path :'Register',component:CreatAccountComponent,canActivate:[LoginGuard]},
+  {path :'Login',component:LoginComponent ,canActivate:[LoginGuard] },
   {path :'movie/:id',component:MovieDeatailsComponent},
   {path :'topmovies',component:TopRatedMoviesComponent},
   {path:'upcomingmovies',component:UpcomingMoviesComponent},
   {path:'nowplayingmovies',component:NowPlayingMoviesComponent},
-  {path:'userpage',component:UserPageComponent},
+  {path:'userpage',component:UserPageComponent ,canActivate:[AuthGuard]},
   {path:'chat',component:ChatroomComponent},
   {path:"",redirectTo:'topmovies',pathMatch:'full'},
   {path:"**", component:NotFoundComponent}
