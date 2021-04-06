@@ -38,7 +38,6 @@ export class AuthenticationService {
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
         this.ngZone.run(() => {
-          console.log("login")
           this.toastr.success('Enjoy!');
           window.location.reload()
         });
@@ -53,9 +52,11 @@ export class AuthenticationService {
   SignUp(user: User) {
     return this.afAuth.createUserWithEmailAndPassword(user.email, user.password)
       .then((result) => {
-        console.log('set user aho')
-        this.SetUserData(user, result.user);
-        window.location.reload();
+        this.SetUserData(user, result.user).then((data)=>{
+          this.toastr.success('Enjoy!');
+          window.location.reload()
+        });
+        
       }).catch((error) => {
         this.toastr.error(`${error.message}`, 'Error', {
           closeButton: true,

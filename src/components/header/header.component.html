@@ -36,7 +36,7 @@
 
 <!-- navbar shown after user login -->
 <nav class="navbar fixed-top navbar-expand-md px-5" *ngIf="isLoggedIn">
-  <a class="navbar-brand" href="#">
+  <a class="navbar-brand" [routerLink]="['/Home']">
     <h3 class="title">Movies</h3>
   </a>
   <button id='menubtn' class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">

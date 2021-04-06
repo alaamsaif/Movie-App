@@ -3,11 +3,14 @@
 }
 
 .jumbotron{
-    background: rgb(159, 190, 190);
-    background: linear-gradient(263deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+    // background: rgb(159, 190, 190);
+    // background: linear-gradient(263deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+    background-image: url('https://www.themoviedb.org/t/p/w1920_and_h600_multi_faces_filter(duotone,032541,01b4e4)/kf456ZqeC45XTvo6W9pW5clYKfQ.jpg');
+    background-size: cover;
 }
 .circleContainer {
-    background-color: rgb(26, 33, 39);
+    // background-color: rgb(26, 33, 39);
+    background-color: rgb(3, 37, 65);
     width: 150px;
     height: 150px;
     display: flex;
@@ -20,14 +23,16 @@
     display: flex;
     align-items: center;
     font-family: 'Archivo Black', sans-serif;
-
+    
 }
 h1{
-    font-size: 5vw;
+    font-size: 4vw;
+    color: white;
 }
 .btn-menu-group{
     display: flex;
     justify-content: center;
+    color: black;
 }
 .collapse.in { min-height: 50px;border: 1px solid blue; }
 
@@ -36,7 +41,8 @@ h1{
     border: none;
     font-size: 15px;
     background-color: white;
-    color:rgb(26, 33, 39) !important;
+    // color:rgb(26, 33, 39) !important;
+    color:rgb(5, 5, 5) !important;
     padding-left: 2rem;
     padding-right: 2rem;
     padding-top: 1rem;

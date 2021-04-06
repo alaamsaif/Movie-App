@@ -16,24 +16,28 @@
             <span>{{hours}}h {{minutes}}m</span>
           </div>
           <div class="actionButtonsBox">
-            <button (click)="addtofav()" type="button" class="rounded-circle btn btn-primary" data-toggle="tooltip" data-placement="bottom"
-              title="Mark as favorite">
+            <button (click)="addtofav()" type="button" class="rounded-circle btn btn-primary" data-toggle="tooltip"
+              data-placement="bottom" title="Mark as favorite">
               <!-- <i class="far fa-heart"></i> -->
-              <i class="fas fa-heart"></i>
+              <i class="fas fa-heart" *ngIf="(isFav==false)"></i>
+              <i class="fas fa-heart buleIcon" *ngIf="(isFav==true)"></i>
             </button>
-  
+
             <button type="button" class="rounded-circle btn btn-primary" data-toggle="tooltip" data-placement="bottom"
               title="write comment">
               <i class="fas fa-comment"></i>
             </button>
-  
-            <button (click)='addtolikes()' type="button" class="rounded-circle btn btn-primary" data-toggle="tooltip" data-placement="bottom"
-              title="Like this Movie">
-              <i class="fas fa-thumbs-up"></i> </button>
+
+            <button (click)='addtolikes()' type="button" class="rounded-circle btn btn-primary" data-toggle="tooltip"
+              data-placement="bottom" title="Like this Movie">
+              <i class="fas fa-thumbs-up" *ngIf="(isLiked==false)"></i> 
+              <i class="fas fa-thumbs-up buleIcon" *ngIf="(isLiked==true)"></i>
+             </button>
+
           </div>
           <h5 class="title">overview</h5>
           <p>{{movie?.overview}}</p>
-  
+
         </div>
       </div>
     </div>
@@ -42,27 +46,28 @@
   <!--Recommendtions Movies-->
   <div class="container my-4 RecommendtionsSection" *ngIf="recommendationsList?.length>0">
     <h2 class="title">Recommended for you</h2>
-    <div class="row">
-      <div class="col-lg-2 col-md-2 col-sm-3" *ngFor="let item of recommendationsList">
-        <a (click)="showMovieDetails(item)"><img class="img-fluid rounded" src="https://image.tmdb.org/t/p/original/{{item.poster_path}}"></a>
+    <div class="d-flex flex-row flex-nowrap overflow-auto my-3 ">
+      <div class="card card-block m-2 movieCard" *ngFor="let item of recommendationsList">
+        <a (click)="showMovieDetails(item)"><img class="img-fluid rounded-top"
+            src="https://image.tmdb.org/t/p/original/{{item.poster_path}}"></a>
         <h6 class="title mt-2">{{item.title}}</h6>
       </div>
     </div>
-    <hr>
+    <hr class="mt-5">
   </div>
 
 
   <!--Similar Movies-->
   <div class="container my-4 SimilarMoviesSection" *ngIf="similarMoviesList?.length>0">
     <h2 class="title">You might like </h2>
-    <div class="row">
-      <div class="col-lg-2 col-md-2 col-sm-3" *ngFor="let item of similarMoviesList">
-        <a (click)="showMovieDetails(item)"><img class="img-fluid rounded" src="https://image.tmdb.org/t/p/original/{{item.poster_path}}"></a>
+    <div class="d-flex flex-row flex-nowrap overflow-auto my-3 ">
+      <div class="card card-block m-2 movieCard" *ngFor="let item of similarMoviesList">
+        <a (click)="showMovieDetails(item)"><img class="img-fluid rounded-top"
+            src="https://image.tmdb.org/t/p/original/{{item.poster_path}}"></a>
         <h6 class="title mt-2">{{item.title}}</h6>
-
       </div>
     </div>
-    <hr>
+    <hr class="mt-5">
   </div>
 
   <!--Reviews-->
@@ -73,7 +78,13 @@
         <h6 class="mb-0">A review by {{review.author}}
         </h6>
         <small>Written by {{review.author}} - on {{review.created_at}}</small>
-        <p class="my-2" >{{review.content}}</p>
+        <p *ngIf="showSmallText" class="my-2">{{review.content | slice:1:200}}
+          <a (click)='showtext()' class="readmoreText">{{ review.content.length > 200 ? '.... Read more' : '' }}</a>
+        </p>
+        <p class="my-2" *ngIf="showAllText">{{review.content}}
+          <a (click)='hidetext()' class="readmoreText" >Show less</a>
+        </p>
+
       </div>
 
     </div>

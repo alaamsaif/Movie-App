@@ -23,7 +23,7 @@ const routes: Routes = [
   {path:'nowplayingmovies',component:NowPlayingMoviesComponent},
   {path:'userpage',component:UserPageComponent ,canActivate:[AuthGuard]},
   {path:'chat',component:ChatroomComponent},
-  {path:"",redirectTo:'topmovies',pathMatch:'full'},
+  {path:"",redirectTo:'Home',pathMatch:'full'},
   {path:"**", component:NotFoundComponent}
   
 ];

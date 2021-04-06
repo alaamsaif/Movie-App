@@ -62,6 +62,7 @@ export class UserFavoritesComponent implements OnInit {
     this.userser.updatefavoritesList(thomovies, this.userId).then((data)=>{
       console.log(data)
       this.ngOnInit();
+     
     });
     
     this.toastr.success(`Remove from favorite`, 'Done', {

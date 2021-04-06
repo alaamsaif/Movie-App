@@ -25,7 +25,11 @@ export class MovieDeatailsComponent implements OnInit {
   recommendationsList: Movie[] = [];
   similarMoviesList: Movie[] = [];
   favoritesListIds: any;
-  likesListIds:any;
+  likesListIds: any;
+  isFav: boolean = false;
+  isLiked:boolean =false;
+  showAllText:boolean=false;
+  showSmallText:boolean=true;
 
   constructor(
     private auth: AuthenticationService,
@@ -43,7 +47,26 @@ export class MovieDeatailsComponent implements OnInit {
       this.userser.getUserById(this.userId).subscribe((user) => {
         this.user = { id: user.payload.id, ...(user.payload.data() as {}) };
         this.favoritesListIds = this.user.favorites;
-        this.likesListIds=this.user.likes;
+        this.likesListIds = this.user.likes;
+
+
+        for (var movie in this.favoritesListIds) {
+          console.log(this.favoritesListIds[movie]+"-"+this.movieId)
+          if (this.favoritesListIds[movie] == this.movieId) {
+            this.isFav = true;
+            
+          }
+        }
+        for (var movie in this.likesListIds) {
+          console.log(this.likesListIds[movie]+"-"+this.movieId)
+          if (this.likesListIds[movie] == this.movieId) {
+            this.isLiked = true;
+           
+          }
+        }
+
+
+
       })
     }
     this.activatedroute.paramMap.subscribe((params: ParamMap) => {
@@ -58,20 +81,16 @@ export class MovieDeatailsComponent implements OnInit {
       })
 
       this.apiSer.getRecommendations(this.movieId).subscribe((Data) => {
-        //get first 6 recommended movies 
-        let recommendationsMovies = Data.results;
-        this.recommendationsList = recommendationsMovies.slice(0, 6)
+        this.recommendationsList = Data.results;
       })
       this.apiSer.getSimilarMovies(this.movieId).subscribe((Data) => {
-
-        let similarMovies = Data.results;
-        this.similarMoviesList = similarMovies.slice(0, 6)
+        this.similarMoviesList = Data.results;
 
       })
 
       this.apiSer.getReviews(this.movieId).subscribe((Data) => {
         this.reviewsList = Data.results;
-       
+
       })
 
     });
@@ -79,14 +98,20 @@ export class MovieDeatailsComponent implements OnInit {
   }
   addtofav() {
     if (this.auth.isLoggedIn === true) {
-      let theMovies = [...this.favoritesListIds];
-      theMovies.push(Number(this.movieId));
-      this.userser.updatefavoritesList(theMovies, this.userId)
-      this.toastr.success(`Mark as favorite`, 'Done', {
-        closeButton: true,
-        timeOut: 5000,
-        progressBar: true
-      });
+       if(this.isFav === false){
+        let theMovies = [...this.favoritesListIds];
+        theMovies.push(Number(this.movieId));
+        this.userser.updatefavoritesList(theMovies, this.userId)
+        this.toastr.success(`Mark as favorite`, 'Done', {
+          closeButton: true,
+          timeOut: 5000,
+          progressBar: true
+        });
+       
+       }
+       else{
+         this.removefromfavorites(this.movieId);
+       }
     }
     else {
       this.toastr.error(`You need to login first.`, 'Error', {
@@ -97,7 +122,22 @@ export class MovieDeatailsComponent implements OnInit {
 
     }
   }
-  addtolikes(){
+  removefromfavorites(movieid: any) {
+    let themovies = [...this.favoritesListIds];
+    const index = themovies.indexOf(movieid);
+    if (index > -1) {
+      themovies.splice(index, 1);
+    }
+    this.userser.updatefavoritesList(themovies, this.userId).then((data)=>{
+    });
+    
+    this.toastr.success(`Remove from favorite`, 'Done', {
+      closeButton: true,
+      timeOut: 5000,
+      progressBar: true
+    });
+  }
+  addtolikes() {
     if (this.auth.isLoggedIn === true) {
       let theMovies = [...this.likesListIds];
       theMovies.push(Number(this.movieId));
@@ -109,16 +149,24 @@ export class MovieDeatailsComponent implements OnInit {
       });
     }
     else {
-      this.toastr.error(`You need to login first.`, 'Error', {
+      this.toastr.error(`You need to login first.`, '', {
         closeButton: true,
         timeOut: 5000,
         progressBar: true
       });
 
-    }    
+    }
   }
   showMovieDetails(movie: Movie) {
     this.router.navigate(['movie', movie.id]);
+  }
+  showtext(){
+    this.showAllText=true;
+    this.showSmallText=false
+  }
+  hidetext(){
+    this.showAllText=false;
+    this.showSmallText=true;
   }
 
 }

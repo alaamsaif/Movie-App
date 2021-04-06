@@ -10,10 +10,12 @@
   <div class="container-fluid my-5">
     <span class="title">What's Popular</span>
     <div class="d-flex flex-row flex-nowrap overflow-auto ">
-      <div class="card card-block m-2 movieCard" *ngFor="let item of listOfPopularMovies">
-        <a (click)="showMovieDetails(item)"><img class="img-fluid rounded-top"
-            src="https://image.tmdb.org/t/p/original/{{item.poster_path}}"></a>
-        <p>{{item.title}}</p>
+      <div *ngFor="let item of listOfPopularMovies">
+        <div class="card card-block m-2 movieCard"  *ngIf="item.poster_path != null && item.title != null" >
+          <a (click)="showMovieDetails(item)"><img class="img-fluid rounded-top"
+              src="https://image.tmdb.org/t/p/original/{{item.poster_path}}"></a>
+          <p>{{item?.title}}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -25,10 +27,12 @@
       <span class="badge badge-pill badge-info px-3 py-2">Today</span>
     </div>
     <div class="d-flex flex-row flex-nowrap overflow-auto ">
-      <div class="card card-block m-2 movieCard" *ngFor="let item of listOfTrendingMovies">
+      <div *ngFor="let item of listOfTrendingMovies">
+      <div class="card card-block m-2 movieCard"  *ngIf="item.poster_path != null && item.title != null" >
         <a (click)="showMovieDetails(item)"><img class="img-fluid rounded-top"
             src="https://image.tmdb.org/t/p/original/{{item.poster_path}}"></a>
-        <p>{{item.title}}</p>
+        <p>{{item?.title}}</p>
+      </div>
       </div>
     </div>
 
