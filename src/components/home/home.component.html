@@ -1,47 +1,37 @@
 <div class="main-div">
-  <div class="container">
-    <app-header></app-header>
+  <div class="jumbotron jumbotron-fluid">
+    <div class="jumbotronContent p-5">
+      <h2>Welcome.</h2>
+      <h5>Millions of movies, TV shows and people to discover. Explore now.</h5>
+    </div>
+  </div>
 
-    <!-- header Navbar-->
-    <!-- <nav class="navbar fixed-top navbar-expand-md px-5">
-      <a class="navbar-brand" href="#">
-        <h3 class="title">Movies</h3>
-      </a>
-      <button id='menubtn' class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-        &#9776;
-      </button>
-      <div class="collapse navbar-collapse justify-content-center" id="collapsibleNavbar">
-        <ul class="navbar-nav ">
-          <li class="nav-item mx-2 my-2">
-            <a (click)='showtoprated()' [ngClass]="{activated: showTopRated==true}">Top Rated</a>
 
-          </li>
-          <li class="nav-item mx-2  my-2">
-            <a (click)='showupcoming()' [ngClass]="{activated: showUpcoming==true}">Upcoming</a>
-          </li>
-          <li class="nav-item mx-2  my-2">
-            <a (click)='shownowplaying()' [ngClass]="{activated: showNowPlaying==true}">Playing now</a>
-          </li>
-        </ul>
+  <div class="container-fluid my-5">
+    <span class="title">What's Popular</span>
+    <div class="d-flex flex-row flex-nowrap overflow-auto ">
+      <div class="card card-block m-2 movieCard" *ngFor="let item of listOfPopularMovies">
+        <a (click)="showMovieDetails(item)"><img class="img-fluid rounded-top"
+            src="https://image.tmdb.org/t/p/original/{{item.poster_path}}"></a>
+        <p>{{item.title}}</p>
       </div>
-      <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
-        <ul class="navbar-nav ">
-          <li class="nav-item mx-2 my-2">
-            <button class="btn btn-primary px-4" (click)="login()">Login</button>
+    </div>
+  </div>
 
-          </li>
-          <li class="nav-item mx-2 my-2">
-            <button class="btn btn-primary px-4 " (click)="signup()">Sign up</button>
 
-          </li>
-        </ul>
+  <div class="container-fluid my-5">
+    <div>
+      <span class="title">Trending </span>
+      <span class="badge badge-pill badge-info px-3 py-2">Today</span>
+    </div>
+    <div class="d-flex flex-row flex-nowrap overflow-auto ">
+      <div class="card card-block m-2 movieCard" *ngFor="let item of listOfTrendingMovies">
+        <a (click)="showMovieDetails(item)"><img class="img-fluid rounded-top"
+            src="https://image.tmdb.org/t/p/original/{{item.poster_path}}"></a>
+        <p>{{item.title}}</p>
       </div>
-    </nav> -->
-
-    <!-- <app-topRatedMovies *ngIf="showTopRated"></app-topRatedMovies>
-    <app-upcomingMovies *ngIf="showUpcoming"></app-upcomingMovies>
-    <app-nowPlayingMovies *ngIf="showNowPlaying"></app-nowPlayingMovies> -->
-
+    </div>
 
   </div>
+
 </div>

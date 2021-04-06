@@ -9,34 +9,25 @@ import { ApiService } from 'src/services/api.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  showTopRated:boolean= true;
-  showUpcoming:boolean=false;
-  showNowPlaying:boolean=false;
-  constructor(private router :Router){}
+ 
+  listOfPopularMovies:Movie[]=[];
+  listOfTrendingMovies:Movie[]=[];
+  constructor(private router :Router,
+    private apiser:ApiService
+    ){}
   ngOnInit() {
+    this.apiser.getPopular().subscribe((movies) => {
+      this.listOfPopularMovies = movies.results; 
+    })
+    this.apiser.getTrending().subscribe((movies) => {
+      this.listOfTrendingMovies = movies.results;
+      
+    })
   }
-  showupcoming(){
-    this.showNowPlaying=false;
-    this.showTopRated=false;
-    this.showUpcoming=true;
-  }
-  showtoprated(){
-    this.showNowPlaying=false;
-    this.showUpcoming=false;
-    this.showTopRated=true;
 
-  }
-  shownowplaying(){
-    this.showUpcoming=false;
-    this.showTopRated=false;
-    this.showNowPlaying=true;
+  showMovieDetails(movie:Movie){
+    this.router.navigate(['movie', movie.id]);
 
-  }
-  login(){
-    this.router.navigate(['/Login']);
-  }
-  signup(){
-    this.router.navigate(['/Register']);
   }
 
 }

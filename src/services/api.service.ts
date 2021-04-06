@@ -51,5 +51,13 @@ export class ApiService {
   getSimilarMovies(movieId:number):Observable<Data>{
     return this.http.get<Data>(`${this.baseUrl}/movie/${movieId}/similar${this.key}&language=en-USUS&page=1`)
   }
+  getPopular(): Observable<Data> {
+    //https://api.themoviedb.org/3/movie/upcoming?api_key=1a5602c2cce1df66d9735323fe31b85d&language=en-US&page=1
+    return this.http.get<Data>(`${this.baseUrl}/movie/popular${this.key}&language=en-USUS&page=1`)  
+  }
+  getTrending(): Observable<Data> {
+    //https://api.themoviedb.org/3/movie/upcoming?api_key=1a5602c2cce1df66d9735323fe31b85d&language=en-US&page=1
+    return this.http.get<Data>(`${this.baseUrl}/trending/all/day${this.key}`)  
+  }
 
 }
