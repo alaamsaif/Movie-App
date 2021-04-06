@@ -28,7 +28,7 @@
               <i class="fas fa-comment"></i>
             </button>
   
-            <button type="button" class="rounded-circle btn btn-primary" data-toggle="tooltip" data-placement="bottom"
+            <button (click)='addtolikes()' type="button" class="rounded-circle btn btn-primary" data-toggle="tooltip" data-placement="bottom"
               title="Like this Movie">
               <i class="fas fa-thumbs-up"></i> </button>
           </div>
@@ -41,7 +41,7 @@
   </div>
 
   <!--Recommendtions Movies-->
-  <div class="container my-4 RecommendtionsSection" *ngIf="recommendationsList.length>0">
+  <div class="container my-4 RecommendtionsSection" *ngIf="recommendationsList?.length>0">
     <h2 class="title">Recommended for you</h2>
     <div class="row">
       <div class="col-lg-2 col-md-2 col-sm-3" *ngFor="let item of recommendationsList">
@@ -54,7 +54,7 @@
 
 
   <!--Similar Movies-->
-  <div class="container my-4 SimilarMoviesSection" *ngIf="similarMoviesList.length>0">
+  <div class="container my-4 SimilarMoviesSection" *ngIf="similarMoviesList?.length>0">
     <h2 class="title">You might like </h2>
     <div class="row">
       <div class="col-lg-2 col-md-2 col-sm-3" *ngFor="let item of similarMoviesList">
@@ -67,7 +67,7 @@
   </div>
 
   <!--Reviews-->
-  <div class="container my-4" *ngIf="reviewsList.length>0">
+  <div class="container my-4" *ngIf="reviewsList?.length>0">
     <h2 class="title">Reviews</h2>
     <div class="container">
       <div class="reviewCard shadow-sm p-3 mb-5 bg-white rounded" *ngFor="let review of reviewsList">

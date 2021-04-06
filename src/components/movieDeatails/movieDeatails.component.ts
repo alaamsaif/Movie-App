@@ -25,6 +25,7 @@ export class MovieDeatailsComponent implements OnInit {
   recommendationsList: Movie[] = [];
   similarMoviesList: Movie[] = [];
   favoritesListIds: any;
+  likesListIds:any;
 
   constructor(
     private auth: AuthenticationService,
@@ -42,6 +43,7 @@ export class MovieDeatailsComponent implements OnInit {
       this.userser.getUserById(this.userId).subscribe((user) => {
         this.user = { id: user.payload.id, ...(user.payload.data() as {}) };
         this.favoritesListIds = this.user.favorites;
+        this.likesListIds=this.user.likes;
       })
     }
     this.activatedroute.paramMap.subscribe((params: ParamMap) => {
@@ -69,7 +71,7 @@ export class MovieDeatailsComponent implements OnInit {
 
       this.apiSer.getReviews(this.movieId).subscribe((Data) => {
         this.reviewsList = Data.results;
-        console.log(this.reviewsList)
+       
       })
 
     });
@@ -94,6 +96,26 @@ export class MovieDeatailsComponent implements OnInit {
       });
 
     }
+  }
+  addtolikes(){
+    if (this.auth.isLoggedIn === true) {
+      let theMovies = [...this.likesListIds];
+      theMovies.push(Number(this.movieId));
+      this.userser.updatefLikesList(theMovies, this.userId)
+      this.toastr.success(`you might like the Recommedtions`, 'take a look', {
+        closeButton: true,
+        timeOut: 5000,
+        progressBar: true
+      });
+    }
+    else {
+      this.toastr.error(`You need to login first.`, 'Error', {
+        closeButton: true,
+        timeOut: 5000,
+        progressBar: true
+      });
+
+    }    
   }
   showMovieDetails(movie: Movie) {
     this.router.navigate(['movie', movie.id]);

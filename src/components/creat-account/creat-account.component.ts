@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/models/User';
 import { AuthenticationService } from 'src/services/authentication.service';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-creat-account',
@@ -20,7 +21,8 @@ export class CreatAccountComponent implements OnInit {
 
   constructor(
     private auth:AuthenticationService,
-    private router :Router
+    private router :Router,
+    @Inject(DOCUMENT) private _document: Document
     ) { }
   ngOnInit(): void {
   }
@@ -30,8 +32,10 @@ export class CreatAccountComponent implements OnInit {
       password: this.password,
       username: this.username,
     }
-    this.auth.SignUp(this.user);
-    this.router.navigate(['/userpage']);
+    this.auth.SignUp(this.user).then((data)=>{
+      console.log('signup')
+    });
+   
     
   }
 

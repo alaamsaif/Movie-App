@@ -16,8 +16,10 @@ export class AuthenticationService {
     public ngZone: NgZone,
     private toastr: ToastrService
   ) {
+    console.log('auth ser')
     this.afAuth.authState.subscribe(user => {
       if (user) {
+        console.log('ther is user')
         this.userState = user;
         localStorage.setItem('user', JSON.stringify(this.userState));
         const userJson = localStorage.getItem('user');
@@ -37,8 +39,8 @@ export class AuthenticationService {
       .then((result) => {
         this.ngZone.run(() => {
           console.log("login")
-          this.toastr.success('Hello world!', 'Toastr fun!');
-
+          this.toastr.success('Enjoy!');
+          window.location.reload()
         });
       }).catch((error) => {
         this.toastr.error(`${error.message}`, 'Error', {
@@ -52,6 +54,7 @@ export class AuthenticationService {
     return this.afAuth.createUserWithEmailAndPassword(user.email, user.password)
       .then((result) => {
         this.SetUserData(user, result.user);
+        window.location.reload();
       }).catch((error) => {
         this.toastr.error(`${error.message}`, 'Error', {
           closeButton: true,

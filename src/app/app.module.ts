@@ -45,10 +45,12 @@ import { UserLikesComponent } from 'src/components/userLikes/userLikes.component
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-
+    
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
 
+    
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
