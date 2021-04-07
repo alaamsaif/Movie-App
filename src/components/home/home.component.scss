@@ -21,7 +21,8 @@
 }
 /* width */
 ::-webkit-scrollbar {
-    width: 5px !important;
+    width: 5px;
+    height:10px ;
     border-radius: 10px;
 }
 /* Track */

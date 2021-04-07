@@ -6,6 +6,7 @@ import { ApiService } from 'src/services/api.service';
 import { AuthenticationService } from 'src/services/authentication.service';
 import { UserService } from 'src/services/firebaseServices/user/user.service';
 import { ToastrService } from 'ngx-toastr';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-movieDeatails',
@@ -108,16 +109,11 @@ export class MovieDeatailsComponent implements OnInit {
       else if (this.isFav === true) {
 
         let thomovies = [...this.favoritesListIds];
-        const index = thomovies.indexOf(this.movieId);
-        if (index > -1) {
-          thomovies.splice(index, 1);
-        }
+        thomovies=thomovies.filter((el)=>el!=this.movieId)
         this.userser.updatefavoritesList(thomovies, this.userId).then((data)=>{
-          console.log(data)
-          this.ngOnInit();
+          this.reloadComponent()
          
-        });
-        
+        });        
         this.toastr.success(`Remove from favorite`, 'Done', {
           closeButton: true,
           timeOut: 5000,
@@ -137,6 +133,7 @@ export class MovieDeatailsComponent implements OnInit {
   
   addtolikes() {
     if (this.auth.isLoggedIn === true) {
+     if(this.isLiked===false){
       let theMovies = [...this.likesListIds];
       theMovies.push(Number(this.movieId));
       this.userser.updatefLikesList(theMovies, this.userId)
@@ -145,6 +142,7 @@ export class MovieDeatailsComponent implements OnInit {
         timeOut: 5000,
         progressBar: true
       });
+     }
     }
     else {
       this.toastr.error(`You need to login first.`, '', {
@@ -165,6 +163,12 @@ export class MovieDeatailsComponent implements OnInit {
   hidetext() {
     this.showAllText = false;
     this.showSmallText = true;
+  }
+  reloadComponent(){
+    let currenturl= this.router.url;
+    this.router.routeReuseStrategy.shouldReuseRoute=()=>false;
+    this.router.onSameUrlNavigation='reload';
+    this.router.navigate([currenturl]);
   }
 
 }
